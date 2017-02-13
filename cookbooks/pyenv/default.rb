@@ -20,7 +20,7 @@ git "/opt/pyenv" do
 	repository "https://github.com/yyuu/pyenv"
 end
 
-file "/etc/profile.d/pyev.sh" do
+file "/etc/profile.d/pyenv.sh" do
 	mode "644"
 	content <<-EOL
 export PYENV_ROOT="/opt/pyenv"
