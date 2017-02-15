@@ -11,7 +11,3 @@ execute "source /etc/profile;pyenv global #{python_version}" do
 	user "root"
 	not_if "source /etc/profile;python -V | grep #{python_version}"
 end
-
-%w(libjpeg-devel).each do |pkg|
-	package pkg
-end
