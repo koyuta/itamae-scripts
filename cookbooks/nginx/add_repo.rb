@@ -1,9 +1,10 @@
-package "http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm" do
+file "/etc/yum.repos.d/nginx.repo" do
 	user "root"
-	action :install
-	not_if "rpm -q nginx-release-centos-6-0.el6.ngx.noarch"
-end
-
-remote_file "/etc/yum.repos.d/nginx.repo" do
-	user "root"
+	content <<-EOL
+[nginx]
+name=nginx repo
+baseurl=#{node["nginx"]["baseurl"]}
+gpgcheck=0
+enabled=1
+	EOL
 end
