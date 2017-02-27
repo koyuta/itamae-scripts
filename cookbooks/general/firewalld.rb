@@ -23,5 +23,5 @@ end
 
 execute "firewall-cmd --reload" do
 	user "root"
-	notifies :restart, "service[nginx]"
+	action :nothing
 end
