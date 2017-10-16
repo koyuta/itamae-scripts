@@ -1,0 +1,26 @@
+[circus]
+statsd = 1
+
+[watcher:webapp]
+working_dir = <%= @workdir %>
+cmd = <%= @apppath %>
+args = -fd $(circus.sockets.web) <%= @optargs %>
+stop_signal = SIGINT
+numprocesses = 1
+use_sockets = True
+
+stdout_stream.class = FileStream
+stdout_stream.filename = /var/log/front/stdout.log
+stdout_stream.refresh_time = 0.3
+stdout_stream.max_bytes = 1073741824
+stdout_stream.backup_count = 2
+
+stderr_stream.class = FileStream
+stderr_stream.filename = /var/log/front/stderr.log
+stderr_stream.refresh_time = 0.3
+stderr_stream.max_bytes = 1073741824
+stderr_stream.backup_count = 2
+
+[socket:web]
+path = /var/run/front/front.sock
+family = AF_UNIX
